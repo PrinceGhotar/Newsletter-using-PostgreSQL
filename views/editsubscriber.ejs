@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Subscriber</title>
+  <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Subscriber</h1>
+    <form action="/update/<%= subscriber.id %>" method="POST">
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" value="<%= subscriber.first_name %>" required>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" value="<%= subscriber.last_name %>" required>
+      </div>
+      <div class="form-group">
+        <label for="email_id">Email</label>
+        <input type="email" class="form-control" id="email_id" name="email_id" value="<%= subscriber.email_id %>" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</body>
+</html>
