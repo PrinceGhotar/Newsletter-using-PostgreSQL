@@ -1,0 +1,114 @@
+/*const express = require("express");
+const bodyParser = require("body-parser");
+const https = require('https');
+
+const app = express();
+
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/signup.html");
+});
+
+app.post("/", function(req, res) {
+  var first_name = req.body.fName;
+  var last_name = req.body.lName;
+  var email_id = req.body.email;
+
+  var data = {
+    members: [
+      {
+        email_address: email_id,
+        FNAME: first_name,
+        LNAME: last_name,
+        status: 'subscribed',
+      }
+    ]
+  };
+
+  const jsonData = JSON.stringify(data);
+
+  // Function to perform the HTTP request
+  function performHTTPRequest() {
+    const options = {
+      method: 'POST',
+      host: 'your-api-host.com', // Replace with your API host
+      path: '/your-api-endpoint', // Replace with the API endpoint
+      headers: {
+        'Authorization': 'api_key',
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const request = https.request(options, function (response) {
+      if (response.statusCode === 200) {
+        res.sendFile(__dirname + "/success.html");
+      } else {
+        res.sendFile(__dirname + "/failure.html");
+      }
+    });
+
+    request.on('error', function (error) {
+      console.error(error);
+      res.sendFile(__dirname + "/failure.html");
+    });
+
+    request.write(jsonData);
+    request.end();
+  }
+
+  // Function to insert data into PostgreSQL
+  function insertDataToPostgreSQL() {
+    const { Client } = require('pg');
+
+    // Replace the connection details with your PostgreSQL configuration
+    const connectionConfig = {
+      user: 'postgres',
+      host: 'localhost',
+      database: 'newsletter',
+      password: 'Prince@123',
+      port: 5432, // Replace with the appropriate port number for your PostgreSQL server
+    };
+
+    const client = new Client(connectionConfig);
+
+    client.connect((error) => {
+      if (error) {
+        console.error(error);
+        res.sendFile(__dirname + "/failure.html");
+        return;
+      }
+
+      const queryText = 'INSERT INTO new_subscriber (email_id, first_name, last_name, status) VALUES ($1, $2, $3, $4)';
+      const values = [email_id, first_name, last_name, 'subscribed'];
+
+      client.query(queryText, values, (error, result) => {
+        if (error) {
+          console.error(error);
+          res.sendFile(__dirname + "/failure.html");
+        } else {
+          performHTTPRequest(); // After successful insertion, perform the HTTP request
+        }
+        client.end(); // Close the database connection
+      });
+    });
+  }
+
+  insertDataToPostgreSQL();
+});
+
+app.post("/failure", function(req, res) {
+  res.redirect("/");
+});
+
+app.listen(4500, function() {
+  console.log("Server is running on port 4500");
+}); */
+
+
+
+/*app.get("/success.html", function(req, res){
+  res.render(__dirname + "/success.html", { first_name,last_name,email_id});
+})
+*/
